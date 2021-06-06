@@ -1,0 +1,21 @@
+{
+  "name": "blog-posts",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "axios": "^0.21.1",
+    "koa": "^2.13.1",
+    "dotenv": "^10.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "jest --coverage src",
+    "test:watch": "jest --watch src"
+  },
+  "devDependencies": {
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7"
+  }
+}

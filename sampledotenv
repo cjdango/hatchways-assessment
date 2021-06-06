@@ -1,0 +1,2 @@
+# Save this file as .env and fill in the appropriate values
+HATCHWAYS_POSTS_API_URL=https://<posts-api-url>
