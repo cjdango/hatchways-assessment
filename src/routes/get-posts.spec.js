@@ -1,7 +1,6 @@
 const { URL } = require('url');
 const dotenv = require('dotenv');
 const makeGetPosts = require('./get-posts');
-const pipe = require('../utils/pipe');
 
 dotenv.config();
 
@@ -31,7 +30,6 @@ const getPosts = makeGetPosts({
 
     return responses[tag]();
   },
-  pipe,
 })
 
 function makeFakeQuery(overrides) {

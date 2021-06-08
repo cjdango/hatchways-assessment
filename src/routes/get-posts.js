@@ -1,4 +1,4 @@
-function buildGetPosts({ issueHTTPRequest, pipe }) {
+function buildGetPosts({ issueHTTPRequest }) {
   return async function getPosts(httpRequest) {
     const validSorts = ['id', 'reads', 'likes', 'popularity'];
     const validSortDirections = ['asc', 'desc'];
@@ -17,15 +17,15 @@ function buildGetPosts({ issueHTTPRequest, pipe }) {
       throw new Error('direction parameter is invalid');
     }
 
-    const getPostsByTags = pipe(
-      makePostsAPIRequestURLs,
-      issueConcurrentGetRequest,
-      flattenResponseBody,
-      mergePosts,
-      sortBy(query.sortBy, query.direction),
-    )
+    const fetchPostsByTags = tags =>
+      Promise
+        .resolve(makePostsAPIRequestURLs(tags))
+        .then(issueConcurrentGetRequest)
+        .then(flattenResponseBody)
+        .then(mergePosts)
+        .then(sortBy(query.sortBy, query.direction))
 
-    return getPostsByTags(query.tags);
+    return fetchPostsByTags(query.tags);
   }
 
   function issueConcurrentGetRequest(urls) {
